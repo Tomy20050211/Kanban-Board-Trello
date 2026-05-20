@@ -1,0 +1,1 @@
+export type StatusProps = "pending" | "in-progress" | "done";
