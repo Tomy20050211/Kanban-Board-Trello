@@ -1,6 +1,17 @@
-import { FormEvent } from "react"
+import type { ControllerInputProps } from "../../types/input.interface"
 
-export const inputController = () => {
-    
+
+export function ControllerInput({value,placeholder, onChange }: ControllerInputProps) {
+
+  return (
+    <div>
+      <input
+        value={value}
+        placeholder={placeholder}
+        onChange={(e) => onChange(e.target.value)}
+        
+      />
+
+    </div>
+  );
 }
-

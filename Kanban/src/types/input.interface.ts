@@ -3,5 +3,5 @@ export interface ControllerInputProps {
   placeholder?: string;
   submitText?: string;
   onChange: (nextValue: string) => void;
-  onSubmit: () => void;
+  onSubmit?: () => void;
 }
