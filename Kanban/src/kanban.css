@@ -1,0 +1,191 @@
+.kanban-board {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 6px;
+}
+
+.kanban-column {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  padding: 12px 12px 14px;
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+}
+
+.kanban-column::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 4px;
+  background: rgba(17, 24, 39, 0.08);
+}
+
+.kanban-column.status-pending::before {
+  background: linear-gradient(90deg, #f59e0b, #fbbf24);
+}
+
+.kanban-column.status-in-progress::before {
+  background: linear-gradient(90deg, #2563eb, #60a5fa);
+}
+
+.kanban-column.status-done::before {
+  background: linear-gradient(90deg, #16a34a, #4ade80);
+}
+
+.kanban-column-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+  padding-top: 4px;
+}
+
+.kanban-column-title {
+  font-size: 14px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.kanban-column-count {
+  font-size: 12px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(17, 24, 39, 0.06);
+  border: 1px solid rgba(17, 24, 39, 0.10);
+  color: var(--text);
+}
+
+.kanban-column.status-pending .kanban-column-count {
+  background: rgba(245, 158, 11, 0.14);
+  border-color: rgba(245, 158, 11, 0.25);
+}
+
+.kanban-column.status-in-progress .kanban-column-count {
+  background: rgba(37, 99, 235, 0.14);
+  border-color: rgba(37, 99, 235, 0.25);
+}
+
+.kanban-column.status-done .kanban-column-count {
+  background: rgba(22, 163, 74, 0.14);
+  border-color: rgba(22, 163, 74, 0.25);
+}
+
+.kanban-column-dropzone {
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  border-radius: var(--radius-sm);
+  border: 1px dashed var(--border);
+  background: rgba(246, 247, 251, 0.65);
+}
+
+.kanban-column-dropzone.is-over {
+  border-color: rgba(37, 99, 235, 0.45);
+  background: rgba(37, 99, 235, 0.08);
+}
+
+.kanban-column.status-pending .kanban-column-dropzone.is-over {
+  border-color: rgba(245, 158, 11, 0.55);
+  background: rgba(245, 158, 11, 0.08);
+}
+
+.kanban-column.status-in-progress .kanban-column-dropzone.is-over {
+  border-color: rgba(37, 99, 235, 0.55);
+  background: rgba(37, 99, 235, 0.08);
+}
+
+.kanban-column.status-done .kanban-column-dropzone.is-over {
+  border-color: rgba(22, 163, 74, 0.55);
+  background: rgba(22, 163, 74, 0.08);
+}
+
+.kanban-task {
+  cursor: grab;
+}
+
+.kanban-task.is-dragging {
+  cursor: grabbing;
+}
+
+.task-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  padding: 10px 12px;
+  box-shadow: 0 1px 0 rgba(17, 24, 39, 0.02);
+  transition: transform 120ms ease, box-shadow 120ms ease, border-color 120ms ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.task-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.task-card-actions {
+  display: inline-flex;
+  gap: 8px;
+}
+
+.task-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 4px;
+  background: rgba(17, 24, 39, 0.10);
+}
+
+.kanban-task.status-pending .task-card::before {
+  background: linear-gradient(180deg, #f59e0b, #fbbf24);
+}
+
+.kanban-task.status-in-progress .task-card::before {
+  background: linear-gradient(180deg, #2563eb, #60a5fa);
+}
+
+.kanban-task.status-done .task-card::before {
+  background: linear-gradient(180deg, #16a34a, #4ade80);
+}
+
+.kanban-task:hover .task-card {
+  box-shadow: 0 10px 18px rgba(17, 24, 39, 0.08);
+  transform: translateY(-1px);
+}
+
+.task-card-title {
+  font-size: 14px;
+  margin: 0 0 6px 0;
+  line-height: 1.25;
+}
+
+.task-card-desc {
+  font-size: 13px;
+  margin: 0;
+  color: var(--muted);
+  white-space: pre-wrap;
+}
+
+.task-edit .field-label {
+  font-size: 12px;
+}
+
+.task-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.kanban-overlay {
+  transform: rotate(2deg);
+}

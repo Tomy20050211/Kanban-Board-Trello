@@ -1,51 +1,38 @@
-import { ControllerInput } from './components/ui/ControllerInput'
-import { CardTask } from './components/ui/CardTask'
-import './App.css'
+import "./App.css";
+import "./kanban.css";
 
-import { useCreateTask } from './hooks/useCreateTask'
-import { useTaskForm } from './hooks/useTaskForm'
+import { useCreateTask } from "./hooks/useCreateTask";
+import { KanbanBoard } from "./components/kanban/KanbanBoard";
+import { TaskForm } from "./components/ui/TaskForm";
 
 function App() {
-  const { title , description, setDescription, setTitle, resetForm} = useTaskForm()
-  const {task,addTask} = useCreateTask()
-   
-  function handleAddTask() {
-    addTask(title, description)
-    resetForm()
-  }
+  const { task, setTask, addTask, deleteTask, updateTask } = useCreateTask();
 
+  return (
+    <div className="app">
+      <header className="app-header">
+        <h1 className="app-title">Kanban</h1>
+        <p className="app-subtitle">
+          Crea una tarea y luego arrástrala entre columnas.
+        </p>
+      </header>
 
+      <TaskForm onCreateTask={addTask} />
 
-   return (
-    <>
-    <ControllerInput value={title} placeholder='Escribe el titulo de la tarea' onChange={setTitle}/>
-   <ControllerInput value={description} placeholder='Escribe la descripcion'  onChange={setDescription}/>
-
-    <button onClick={handleAddTask}>Agregar</button>
-{/* 
-    <div>
-       <h1>
-        {title}
-       </h1>
-       <p>
-        {description}
-       </p>
-    </div> */}
-
-    <section>
-       {task.map(item => (
-  <CardTask
-    key={item.id}
-    title={item.title}
-    description={item.description}
-  />
-))}
-    </section>
-    </>
-
-  
-    
-   )
+      {task.length ? (
+        <KanbanBoard
+          tasks={task}
+          setTasks={setTask}
+          onDeleteTask={deleteTask}
+          onUpdateTask={updateTask}
+        />
+      ) : (
+        <section className="empty-state">
+          <p className="empty-state-text">Aún no hay tareas.</p>
+        </section>
+      )}
+    </div>
+  );
 }
 
-export default App
+export default App;
