@@ -156,3 +156,28 @@
   color: var(--muted);
   font-size: 14px;
 }
+
+@media (max-width: 900px) {
+  .app {
+    width: calc(100% - 24px);
+    margin: 16px auto 28px;
+    gap: 14px;
+  }
+
+  .app-header {
+    padding: 14px;
+  }
+
+  .panel {
+    padding: 14px;
+  }
+
+  .task-form-actions {
+    justify-content: stretch;
+  }
+
+  .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
