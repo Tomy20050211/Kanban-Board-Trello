@@ -1,5 +1,6 @@
 import { arrayMove } from "@dnd-kit/sortable";
 
+import type { ApplyDragArgs } from "../../types/applyDragArgs.type";
 import type { StatusProps } from "../../types/state.type";
 import type { TasksProps } from "../../types/task.interface";
 import { KANBAN_STATUSES } from "./kanban.config";
@@ -24,14 +25,6 @@ export function getStatusForDragId(tasks: TasksProps[], id: string): StatusProps
   const t = tasks.find(task => task.id === id);
   return t?.status ?? null;
 }
-
-type ApplyDragArgs = {
-  prev: TasksProps[];
-  activeId: string;
-  overId: string;
-  fromStatus: StatusProps;
-  toStatus: StatusProps;
-};
 
 export function applyDragEnd({
   prev,
